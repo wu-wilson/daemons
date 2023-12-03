@@ -1,0 +1,31 @@
+@use "../../_themes.module.scss" as theme;
+
+.container {
+  font-family: theme.$font-family;
+  color: theme.$font-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.7rem;
+  width: 100%;
+  box-sizing: border-box;
+  position: absolute;
+  background-color: theme.$primary-color;
+  white-space: pre-wrap;
+}
+
+.icon {
+  height: 1.3rem;
+  margin-right: 0.3rem;
+}
+
+a {
+  &:link,
+  &:active,
+  &:visited {
+    color: theme.$font-color;
+  }
+  &:hover {
+    color: darken(theme.$font-color, 20%);
+  }
+}

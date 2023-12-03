@@ -1,0 +1,17 @@
+// Palette
+$primary-color: #7286d3;
+$secondary-color: darken($primary-color, 10%);
+
+// Page
+$bg-color: #111111;
+$card-bg: lighten($bg-color, 5%);
+
+// Font
+$font-family: "Inconsolata", monospace;
+$font-color: #fff;
+
+// exports
+:export {
+  primary_color: $primary-color;
+  font_color: $font-color;
+}
