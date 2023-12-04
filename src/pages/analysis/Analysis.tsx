@@ -9,6 +9,7 @@ import OpenAI from "openai";
 import Highlighter from "../../components/highlighter/Highlighter";
 import themes from "../../_themes.module.scss";
 import styles from "./analysis.module.scss";
+import { getValue } from "@testing-library/user-event/dist/utils";
 
 const openai = new OpenAI({
   apiKey: process.env.REACT_APP_OPENAI_API_KEY,
@@ -60,6 +61,16 @@ const Analysis = ({ text, daemon }: { text: string; daemon: Daemon }) => {
     navigate("/workshop");
   };
 
+  const getValueFromCaseInsensitiveKey = (
+    object: { [key: string]: string },
+    key: string
+  ) => {
+    const keyLowerCase = key.toLowerCase();
+    return object[
+      Object.keys(object).filter((k) => k.toLowerCase() === keyLowerCase)[0]
+    ];
+  };
+
   return (
     <div className={styles["container"]}>
       <div className={styles["card"]}>
@@ -88,7 +99,9 @@ const Analysis = ({ text, daemon }: { text: string; daemon: Daemon }) => {
                   <GrMail className={styles["mail"]} /> Message from{" "}
                   {daemon.name}:
                 </span>
-                <span>{response[clickedText]}</span>
+                <span>
+                  {getValueFromCaseInsensitiveKey(response, clickedText)}
+                </span>
               </div>
             ) : null}
             <div className={styles["btn-container"]}>
