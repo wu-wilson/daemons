@@ -1,0 +1,42 @@
+@use "../../_themes.module.scss" as theme;
+
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  box-sizing: border-box;
+  background-color: lighten(theme.$card-bg, 10%);
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  white-space: pre-wrap;
+  border-radius: 0.3rem;
+}
+
+.preview {
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+}
+.icon {
+  font-size: 1rem;
+  margin-right: 0.5rem;
+  stroke-width: 1.2;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.content-container {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 500ms;
+  .content {
+    overflow: hidden;
+    line-height: 1.5;
+  }
+}
+
+.open {
+  grid-template-rows: 1fr;
+}
