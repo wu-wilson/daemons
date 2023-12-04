@@ -6,10 +6,13 @@ import { ChatCompletion } from "openai/resources";
 import { GrMail } from "react-icons/gr";
 import { useNavigate } from "react-router-dom";
 import OpenAI from "openai";
+import Accordion from "../../components/accordion/Accordion";
 import Highlighter from "../../components/highlighter/Highlighter";
 import themes from "../../_themes.module.scss";
 import styles from "./analysis.module.scss";
-import { getValue } from "@testing-library/user-event/dist/utils";
+
+const limitations =
+  "\nIf your results look a bit off, it's probably due to the limitations of Daemon's Workshop. This website leverages OpenAI's GPT-3.5 Turbo, a powerful language learning model, to produce results. \n\nHowever, the model is highly susceptible to poor prompting. We've noticed issues arise with complex punctuation and improper punctuation. We are still working on fine-tuning our prompts, so we apologize for any inconvenience.";
 
 const openai = new OpenAI({
   apiKey: process.env.REACT_APP_OPENAI_API_KEY,
@@ -103,6 +106,12 @@ const Analysis = ({ text, daemon }: { text: string; daemon: Daemon }) => {
           <>
             <div className={styles["title"]}>
               Click Highlighted Sections for Feedback
+            </div>
+            <div className={styles["accordion-container"]}>
+              <Accordion
+                title={"Does your result look weird?"}
+                content={limitations}
+              />
             </div>
             <div className={styles["text-container"]}>
               <Highlighter
