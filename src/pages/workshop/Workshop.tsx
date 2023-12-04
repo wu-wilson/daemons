@@ -2,7 +2,7 @@ import Accordion from "../../components/accordian/Accordion";
 import styles from "./workshop.module.scss";
 
 const instructions =
-  "\nDo you need help editing a small passage of text? Start by pasting your text below.\n\nOnce you are done, choose the Daemon you'd like to assist you. Then, we'll ask him for some suggestions!";
+  "\nNeed help editing a small passage of text? Start by pasting the text you'd like help with below.\n\nOnce you are done, choose the Daemon you'd like to assist you. Then, we'll ask the Daemon where and how your text could be improved.";
 
 const Workshop = () => {
   return (
