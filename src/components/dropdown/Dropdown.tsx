@@ -1,6 +1,6 @@
 import { RiArrowDownSFill, RiArrowUpSFill } from "react-icons/ri";
 import { useState, useEffect, useRef } from "react";
-import { Daemon } from "../../pages/workshop/Workshop";
+import { Daemon } from "../../App";
 import styles from "./dropdown.module.scss";
 
 const Dropdown = ({

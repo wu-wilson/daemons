@@ -1,4 +1,6 @@
 import { FormEvent, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Daemon, Daemons } from "../../App";
 import Accordion from "../../components/accordian/Accordion";
 import Dropdown from "../../components/dropdown/Dropdown";
 import styles from "./workshop.module.scss";
@@ -7,22 +9,20 @@ const instructions =
   "\nNeed help editing a small passage of text? Start by pasting the text you'd like help with below.\n\nOnce you are done, choose the Daemon you'd like to assist you. Then, we'll ask the Daemon where and how your text could be improved.";
 const maxCharacters = 500;
 
-export type Daemon = {
-  id: number;
-  name: string;
-};
-
-const Daemons: Daemon[] = [
-  { id: 0, name: "The Researcher" },
-  { id: 1, name: "The Elaborator" },
-];
-
-const Workshop = () => {
-  const [text, setText] = useState<string>("");
-  const [daemon, setDaemon] = useState<Daemon>(Daemons[0]);
-
+const Workshop = ({
+  text,
+  setText,
+  daemon,
+  setDaemon,
+}: {
+  text: string;
+  setText: (text: string) => void;
+  daemon: Daemon;
+  setDaemon: (daemon: Daemon) => void;
+}) => {
   const [error, setError] = useState<string | null>(null);
 
+  const navigate = useNavigate();
   const checkValidation = () => {
     if (!daemon) {
       setError("Please select a Daemon");
@@ -31,7 +31,7 @@ const Workshop = () => {
     } else if (text.length < 100) {
       setError("Please type at least 100 characters");
     } else {
-      // Start
+      navigate("/analysis");
     }
   };
 
