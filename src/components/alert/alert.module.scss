@@ -24,6 +24,7 @@ a {
   &:active,
   &:visited {
     color: theme.$font-color;
+    transition: ease color 200ms;
   }
   &:hover {
     color: darken(theme.$font-color, 20%);

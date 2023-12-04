@@ -4,9 +4,10 @@ import Particles from "./components/particles/Particles";
 import Home from "./pages/home/Home";
 import Workshop from "./pages/workshop/Workshop";
 import Analysis from "./pages/analysis/Analysis";
+import About from "./pages/about/About";
 import Error from "./pages/error/Error";
 import themes from "./_themes.module.scss";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export type Daemon = {
   id: number;
@@ -62,6 +63,7 @@ const App = () => {
             path="/analysis"
             element={<Analysis text={text} daemon={daemon} />}
           />
+          <Route path="/about" element={<About />} />
           <Route path="/error" element={<Error />} />
         </Routes>
       </BrowserRouter>
