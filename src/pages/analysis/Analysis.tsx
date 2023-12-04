@@ -78,6 +78,17 @@ const Analysis = ({ text, daemon }: { text: string; daemon: Daemon }) => {
     ];
   };
 
+  const getTags = (object: { [key: string]: string }) => {
+    let keys = Object.keys(object);
+    let tags: string[] = [];
+    keys.forEach((key) => {
+      const tag =
+        key.slice(0, key.length - 1) + "\\" + key.slice(key.length - 1);
+      tags.push(tag);
+    });
+    return tags;
+  };
+
   return (
     <div className={styles["container"]}>
       <div className={styles["card"]}>
@@ -96,7 +107,7 @@ const Analysis = ({ text, daemon }: { text: string; daemon: Daemon }) => {
             <div className={styles["text-container"]}>
               <Highlighter
                 text={text}
-                tags={Object.keys(response ? response : {})}
+                tags={response ? getTags(response) : []}
                 setClickedText={setClickedText}
               />
             </div>

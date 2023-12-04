@@ -11,7 +11,6 @@ const Highlighter = ({
 }) => {
   const matches = [...text.matchAll(new RegExp(tags.join("|"), "ig"))];
   const startText = text.slice(0, matches[0]?.index);
-
   return tags.length > 0 ? (
     <span>
       {startText}
