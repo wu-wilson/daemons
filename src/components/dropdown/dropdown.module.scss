@@ -1,0 +1,36 @@
+@use "../../_themes.module.scss" as theme;
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 1rem;
+  font-family: theme.$font-family;
+  background-color: lighten(theme.$card-bg, 10%);
+  border-radius: 0.8rem;
+  position: relative;
+  box-sizing: border-box;
+  &:hover {
+    cursor: pointer;
+  }
+  .arrow {
+    color: theme.$font-color;
+  }
+  .menu {
+    position: absolute;
+    background-color: lighten(theme.$card-bg, 10%);
+    margin-left: -1rem;
+    margin-top: 1.5rem;
+    z-index: 5;
+    .option {
+      box-sizing: border-box;
+      padding: 1.5rem 1rem;
+      padding: 10px;
+      width: 100%;
+      &:hover {
+        cursor: pointer;
+        background-color: lighten(theme.$card-bg, 20%);
+      }
+    }
+  }
+}

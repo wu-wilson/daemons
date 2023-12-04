@@ -16,10 +16,10 @@
 .preview {
   display: flex;
   align-items: center;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 .icon {
-  font-size: 1rem;
+  font-size: 0.9rem;
   margin-right: 0.5rem;
   stroke-width: 1.2;
   &:hover {
@@ -34,6 +34,7 @@
   .content {
     overflow: hidden;
     line-height: 1.5;
+    font-size: 0.95rem;
   }
 }
 
