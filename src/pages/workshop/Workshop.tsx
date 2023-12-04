@@ -64,6 +64,7 @@ const Workshop = ({
           width={300}
           height={25}
         />
+        <div className={styles["description"]}>{daemon.description}</div>
         <div className={styles["btn-container"]}>
           <button className={styles["btn"]} onClick={checkValidation}>
             Ask Daemon
