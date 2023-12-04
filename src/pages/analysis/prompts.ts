@@ -8,5 +8,5 @@ export const prompts: { [key: number]: string } = {
     
     {"apples are delicious.": "This sentence is subjective, so it can benefit from additional evidence. According to fruits.com, 70% of people like apples.", "vegetables are disgusting": "This is an opinion, so it would benefit from some evidence. According to vegetables.com, most people dislike the taste of vegetables."}
 
-    Make each key entirely lowercase. Ensure that your response can be parsed with JSON.parse(). Respond with ONLY the valid JSON object. Here is the provided passage: `,
+    Ensure that your response can be parsed with JSON.parse(). Respond with ONLY the valid JSON object. Here is the provided passage: `,
 };
