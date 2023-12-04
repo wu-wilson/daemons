@@ -15,6 +15,7 @@ export type Daemon = {
 export const Daemons: Daemon[] = [
   { id: 0, name: "The Researcher" },
   { id: 1, name: "The Elaborator" },
+  { id: 2, name: "The Grammarist" },
 ];
 
 const App = () => {
