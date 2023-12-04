@@ -40,7 +40,10 @@ const App = () => {
               />
             }
           />
-          <Route path="/analysis" element={<Analysis />} />
+          <Route
+            path="/analysis"
+            element={<Analysis text={text} daemon={daemon} />}
+          />
         </Routes>
       </BrowserRouter>
     </>
