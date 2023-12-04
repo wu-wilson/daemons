@@ -4,6 +4,7 @@ import { Daemon } from "../../App";
 import { prompts } from "./prompts";
 import { ChatCompletion } from "openai/resources";
 import { GrMail } from "react-icons/gr";
+import { useNavigate } from "react-router-dom";
 import OpenAI from "openai";
 import Highlighter from "../../components/highlighter/Highlighter";
 import themes from "../../_themes.module.scss";
@@ -54,6 +55,11 @@ const Analysis = ({ text, daemon }: { text: string; daemon: Daemon }) => {
 
   const [clickedText, setClickedText] = useState<string | null>(null);
 
+  const navigate = useNavigate();
+  const navigateWorkshop = () => {
+    navigate("/workshop");
+  };
+
   return (
     <div className={styles["container"]}>
       <div className={styles["card"]}>
@@ -66,6 +72,9 @@ const Analysis = ({ text, daemon }: { text: string; daemon: Daemon }) => {
           </div>
         ) : (
           <>
+            <div className={styles["title"]}>
+              Click Highlighted Sections for Feedback
+            </div>
             <div className={styles["text-container"]}>
               <Highlighter
                 text={text}
@@ -75,13 +84,18 @@ const Analysis = ({ text, daemon }: { text: string; daemon: Daemon }) => {
             </div>
             {clickedText && response ? (
               <div className={styles["feedback"]}>
-                <span className={styles["title"]}>
+                <span className={styles["feedback-title"]}>
                   <GrMail className={styles["mail"]} /> Message from{" "}
                   {daemon.name}:
                 </span>
                 <span>{response[clickedText]}</span>
               </div>
             ) : null}
+            <div className={styles["btn-container"]}>
+              <button className={styles["btn"]} onClick={navigateWorkshop}>
+                Back to Workshop
+              </button>
+            </div>
           </>
         )}
       </div>

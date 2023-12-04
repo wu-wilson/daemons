@@ -48,6 +48,11 @@
   }
 }
 
+.title {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
 .text-container {
   width: 100%;
 }
@@ -62,7 +67,7 @@
   border-radius: 0.3rem;
   padding: 1rem;
   padding-bottom: 2rem;
-  .title {
+  .feedback-title {
     font-size: 1.1rem;
     width: 100%;
     display: flex;
@@ -73,6 +78,27 @@
       height: 2rem;
       margin-right: 1rem;
       color: theme.$primary-color;
+    }
+  }
+}
+
+.btn-container {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  .btn {
+    border: none;
+    font-size: 1rem;
+    background-color: theme.$primary-color;
+    color: theme.$font-color;
+    padding: 1rem 2rem;
+    margin-top: 2rem;
+    border-radius: 0.8rem;
+    font-family: theme.$font-family;
+    transition: ease background-color 200ms;
+    &:hover {
+      cursor: pointer;
+      background-color: theme.$secondary-color;
     }
   }
 }
