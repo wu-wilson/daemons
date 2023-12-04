@@ -16,7 +16,7 @@ const Highlighter = ({ text, tags }: { text: string; tags: string[] }) => {
           const untilNextText = text.slice(endIndex, nextIndex);
           return (
             <span key={i}>
-              <mark>{currentText}</mark>
+              <span className={styles["highlight"]}>{currentText}</span>
               {untilNextText}
             </span>
           );

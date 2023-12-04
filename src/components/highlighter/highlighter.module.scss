@@ -1,1 +1,11 @@
 @use "../../_themes.module.scss" as theme;
+
+.highlight {
+  background-color: theme.$primary-color;
+  color: theme.$bg-color;
+  transition: ease background-color 200ms;
+  &:hover {
+    cursor: pointer;
+    background-color: theme.$secondary-color;
+  }
+}
