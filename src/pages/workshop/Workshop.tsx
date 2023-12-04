@@ -1,7 +1,7 @@
 import { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Daemon, Daemons } from "../../App";
-import Accordion from "../../components/accordian/Accordion";
+import Accordion from "../../components/accordion/Accordion";
 import Dropdown from "../../components/dropdown/Dropdown";
 import styles from "./workshop.module.scss";
 

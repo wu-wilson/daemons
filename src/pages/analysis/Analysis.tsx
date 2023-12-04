@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import { HashLoader } from "react-spinners";
 import { Daemon } from "../../App";
+import { prompts } from "./prompts";
+import { ChatCompletion } from "openai/resources";
 import OpenAI from "openai";
+import Highlighter from "../../components/highlighter/Highlighter";
 import themes from "../../_themes.module.scss";
 import styles from "./analysis.module.scss";
 
@@ -24,21 +27,29 @@ const Analysis = ({ text, daemon }: { text: string; daemon: Daemon }) => {
     }
   }, [loading]);
 
+  const [response, setResponse] = useState<{ [key: string]: string } | null>(
+    null
+  );
+
   const getAnalysis = async () => {
-    const completion = await openai.chat.completions.create({
-      messages: [
-        { role: "system", content: "You are a helpful assistant." },
-        { role: "user", content: "Who won the world series in 2020?" },
-        {
-          role: "assistant",
-          content: "The Los Angeles Dodgers won the World Series in 2020.",
-        },
-        { role: "user", content: "Where was it played?" },
-      ],
+    const completion: ChatCompletion = await openai.chat.completions.create({
+      messages: [{ role: "user", content: prompts[daemon.id] + text }],
       model: "gpt-3.5-turbo",
     });
-    console.log(completion);
+    if (completion.choices[0].message.content) {
+      const res: { [key: string]: string } = JSON.parse(
+        completion.choices[0].message.content
+      );
+      setResponse(res);
+    }
   };
+
+  useEffect(() => {
+    if (response) {
+      console.log(response);
+      setLoading(false);
+    }
+  }, [JSON.stringify(response)]);
 
   return (
     <div className={styles["container"]}>
@@ -51,7 +62,10 @@ const Analysis = ({ text, daemon }: { text: string; daemon: Daemon }) => {
             </span>
           </div>
         ) : (
-          "Analysis"
+          <Highlighter
+            text={text.replace(/\s+/g, " ").trim()}
+            tags={Object.keys(response ? response : {})}
+          />
         )}
       </div>
     </div>
