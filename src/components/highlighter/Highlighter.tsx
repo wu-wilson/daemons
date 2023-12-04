@@ -1,6 +1,14 @@
 import styles from "./highlighter.module.scss";
 
-const Highlighter = ({ text, tags }: { text: string; tags: string[] }) => {
+const Highlighter = ({
+  text,
+  tags,
+  setClickedText,
+}: {
+  text: string;
+  tags: string[];
+  setClickedText: (text: string) => void;
+}) => {
   const matches = [...text.matchAll(new RegExp(tags.join("|"), "g"))];
   const startText = text.slice(0, matches[0]?.index);
 
@@ -16,7 +24,12 @@ const Highlighter = ({ text, tags }: { text: string; tags: string[] }) => {
           const untilNextText = text.slice(endIndex, nextIndex);
           return (
             <span key={i}>
-              <span className={styles["highlight"]}>{currentText}</span>
+              <span
+                className={styles["highlight"]}
+                onClick={() => setClickedText(currentText)}
+              >
+                {currentText}
+              </span>
               {untilNextText}
             </span>
           );

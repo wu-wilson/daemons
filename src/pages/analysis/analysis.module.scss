@@ -47,3 +47,32 @@
     margin-top: 3rem;
   }
 }
+
+.text-container {
+  width: 100%;
+}
+
+.feedback {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+  width: 100%;
+  background-color: lighten(theme.$card-bg, 10%);
+  box-sizing: border-box;
+  border-radius: 0.3rem;
+  padding: 1rem;
+  padding-bottom: 2rem;
+  .title {
+    font-size: 1.1rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 1rem;
+    .mail {
+      height: 2rem;
+      margin-right: 1rem;
+      color: theme.$primary-color;
+    }
+  }
+}

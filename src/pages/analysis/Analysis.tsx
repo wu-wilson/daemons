@@ -3,6 +3,7 @@ import { HashLoader } from "react-spinners";
 import { Daemon } from "../../App";
 import { prompts } from "./prompts";
 import { ChatCompletion } from "openai/resources";
+import { GrMail } from "react-icons/gr";
 import OpenAI from "openai";
 import Highlighter from "../../components/highlighter/Highlighter";
 import themes from "../../_themes.module.scss";
@@ -51,6 +52,8 @@ const Analysis = ({ text, daemon }: { text: string; daemon: Daemon }) => {
     }
   }, [JSON.stringify(response)]);
 
+  const [clickedText, setClickedText] = useState<string | null>(null);
+
   return (
     <div className={styles["container"]}>
       <div className={styles["card"]}>
@@ -62,10 +65,24 @@ const Analysis = ({ text, daemon }: { text: string; daemon: Daemon }) => {
             </span>
           </div>
         ) : (
-          <Highlighter
-            text={text.replace(/\s+/g, " ").trim()}
-            tags={Object.keys(response ? response : {})}
-          />
+          <>
+            <div className={styles["text-container"]}>
+              <Highlighter
+                text={text}
+                tags={Object.keys(response ? response : {})}
+                setClickedText={setClickedText}
+              />
+            </div>
+            {clickedText && response ? (
+              <div className={styles["feedback"]}>
+                <span className={styles["title"]}>
+                  <GrMail className={styles["mail"]} /> Message from{" "}
+                  {daemon.name}:
+                </span>
+                <span>{response[clickedText]}</span>
+              </div>
+            ) : null}
+          </>
         )}
       </div>
     </div>
