@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import { HashLoader } from "react-spinners";
 import { Daemon } from "../../App";
+import OpenAI from "openai";
 import themes from "../../_themes.module.scss";
 import styles from "./analysis.module.scss";
+
+const openai = new OpenAI();
 
 const Analysis = ({ text, daemon }: { text: string; daemon: Daemon }) => {
   const [loading, setLoading] = useState<boolean | null>(null);
