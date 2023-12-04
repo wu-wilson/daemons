@@ -17,6 +17,11 @@ const openai = new OpenAI({
 });
 
 const Analysis = ({ text, daemon }: { text: string; daemon: Daemon }) => {
+  const navigate = useNavigate();
+  const navigateWorkshop = () => {
+    navigate("/workshop");
+  };
+
   const [loading, setLoading] = useState<boolean | null>(null);
 
   useEffect(() => {
@@ -35,31 +40,33 @@ const Analysis = ({ text, daemon }: { text: string; daemon: Daemon }) => {
   );
 
   const getAnalysis = async () => {
-    const completion: ChatCompletion = await openai.chat.completions.create({
-      messages: [{ role: "user", content: prompts[daemon.id] + text }],
-      model: "gpt-3.5-turbo",
-    });
-    if (completion.choices[0].message.content) {
-      const res: { [key: string]: string } = JSON.parse(
-        completion.choices[0].message.content
-      );
-      setResponse(res);
+    const completion: ChatCompletion | void = await openai.chat.completions
+      .create({
+        messages: [{ role: "user", content: prompts[daemon.id] + text }],
+        model: "gpt-3.5-turbo",
+      })
+      .catch(() => {
+        navigate("/error");
+      });
+    try {
+      if (completion?.choices[0].message.content) {
+        const res: { [key: string]: string } = JSON.parse(
+          completion.choices[0].message.content
+        );
+        setResponse(res);
+      }
+    } catch {
+      navigate("/error");
     }
   };
 
   useEffect(() => {
     if (response) {
-      console.log(response);
       setLoading(false);
     }
   }, [JSON.stringify(response)]);
 
   const [clickedText, setClickedText] = useState<string | null>(null);
-
-  const navigate = useNavigate();
-  const navigateWorkshop = () => {
-    navigate("/workshop");
-  };
 
   const getValueFromCaseInsensitiveKey = (
     object: { [key: string]: string },

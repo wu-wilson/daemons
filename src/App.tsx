@@ -4,6 +4,7 @@ import Particles from "./components/particles/Particles";
 import Home from "./pages/home/Home";
 import Workshop from "./pages/workshop/Workshop";
 import Analysis from "./pages/analysis/Analysis";
+import Error from "./pages/error/Error";
 import themes from "./_themes.module.scss";
 import { useEffect, useState } from "react";
 
@@ -61,6 +62,7 @@ const App = () => {
             path="/analysis"
             element={<Analysis text={text} daemon={daemon} />}
           />
+          <Route path="/error" element={<Error />} />
         </Routes>
       </BrowserRouter>
     </>

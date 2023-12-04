@@ -1,0 +1,55 @@
+@use "../../_themes.module.scss" as theme;
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  font-family: theme.$font-family;
+  color: theme.$font-color;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  position: relative;
+  display: flex;
+  align-items: center;
+  font-size: 3rem;
+  font-family: "Martian Mono", monospace;
+}
+
+.subtext {
+  width: 28rem;
+  line-height: 1.5;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.icon {
+  position: absolute;
+  left: -3.5rem;
+  color: yellow;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  border: none;
+  font-size: 1rem;
+  font-family: theme.$font-family;
+  background-color: theme.$primary-color;
+  color: theme.$font-color;
+  padding: 1rem 2rem;
+  border-radius: 0.8rem;
+  margin-top: 2rem;
+  transition: ease background-color 200ms;
+  &:hover {
+    cursor: pointer;
+    background-color: theme.$secondary-color;
+  }
+  .arrow {
+    margin-left: 0.5rem;
+    stroke-width: 1.5;
+  }
+}
